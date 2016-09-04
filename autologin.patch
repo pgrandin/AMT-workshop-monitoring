@@ -1,0 +1,12 @@
+--- /rootfs/etc/systemd/system/getty.target.wants/getty@tty1.service	2016-08-30 21:44:59.330714335 +0000
++++ /rootfs/etc/systemd/system/getty.target.wants/getty@tty1.service	2016-08-30 21:45:01.860710405 +0000
+@@ -25,7 +25,7 @@
+ 
+ [Service]
+ # the VT is cleared by TTYVTDisallocate
+-ExecStart=-/sbin/agetty -a pi %I $TERM
++ExecStart=-/sbin/agetty --noclear %I $TERM
+ Type=idle
+ Restart=always
+ RestartSec=0
+

@@ -1,0 +1,29 @@
+chroot /rootfs wget https://raw.githubusercontent.com/fg2it/grafana-on-raspberry/master/jessie/v2.6.0/grafana_2.6.0_armhf.deb -O /tmp/grafana_2.6.0_armhf.deb
+
+chroot /rootfs dpkg -i /tmp/grafana_2.6.0_armhf.deb
+
+chroot /rootfs puppet module install bfraser-grafana
+chroot /rootfs puppet module install dwerder-graphite
+
+chroot /rootfs sed -i -e 's/vivid|wily/vivid|wily|/' /etc/puppet/modules/graphite/manifests/params.pp
+
+cat > /rootfs/etc/puppet/site.pp << EOF
+class { 'grafana': 
+  cfg => {
+    'auth.anonymous' => {
+      enabled => true,
+    },
+  },
+
+}
+class { 'graphite': }
+
+EOF
+
+chroot /rootfs puppet apply /etc/puppet/site.pp
+chroot /rootfs puppet apply /etc/puppet/site.pp
+
+patch -p0 < /bootfs/autologin.patch
+
+chroot /rootfs sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config
+chroot /rootfs useradd -m pi

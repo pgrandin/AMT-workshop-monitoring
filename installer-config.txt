@@ -1,0 +1,1 @@
+packages=puppet,xserver-xorg,xinit,fluxbox,x11-xserver-utils,tmux,iceweasel,xdotool

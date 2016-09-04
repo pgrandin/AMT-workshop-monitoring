@@ -1,0 +1,16 @@
+# /etc/systemd/system/dc1100.service
+[Unit]
+Description=DC1100
+
+[Service]
+# The PID file is optional, but recommended in the manpage
+# "so that systemd can identify the main process of the daemon"
+Type=simple
+ExecStart=/usr/local/bin/dc1100.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+
+
+# systemctl enable dc1100
