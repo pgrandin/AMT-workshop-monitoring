@@ -8,7 +8,7 @@ class { 'grafana':
 }
 
 class { 'graphite':
-
+  gr_timezone               => 'America/Los_Angeles',
   gr_storage_schemas        => [
     {
       name       => 'carbon',
