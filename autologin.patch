@@ -4,8 +4,8 @@
  
  [Service]
  # the VT is cleared by TTYVTDisallocate
--ExecStart=-/sbin/agetty -a pi %I $TERM
-+ExecStart=-/sbin/agetty --noclear %I $TERM
+-ExecStart=-/sbin/agetty --noclear %I $TERM
++ExecStart=-/sbin/agetty -a pi %I $TERM
  Type=idle
  Restart=always
  RestartSec=0
