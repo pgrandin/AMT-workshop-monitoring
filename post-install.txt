@@ -26,4 +26,4 @@ chroot /rootfs puppet apply /etc/puppet/site.pp
 patch -p0 < /bootfs/autologin.patch
 
 chroot /rootfs sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config
-chroot /rootfs useradd -m pi
+chroot /rootfs useradd -m pi -s /bin/bash
